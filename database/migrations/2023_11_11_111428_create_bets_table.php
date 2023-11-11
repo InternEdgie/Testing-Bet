@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('bets', function (Blueprint $table) {
             $table->id('bet_id');
-            $table->integer('bet');
-            $table->string('transaction_id');
-            $table->integer('bet_type_id');
+            $table->integer('bet_number');
+            $table->decimal('bet_amount', 5, 2);
+            $table->integer('bet_type')->default(0);
+            $table->string('ticket_id');
             $table->timestamps();
         });
     }

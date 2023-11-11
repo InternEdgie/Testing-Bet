@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bet_types', function (Blueprint $table) {
-            $table->id('bet_type_id');
-            $table->string('bet_type');
-            $table->text('bet_description');
+        Schema::create('tickets', function (Blueprint $table) {
+            $table->string('ticket_id')->primary();
+            $table->string('ticket_draw_time');
             $table->timestamps();
         });
     }
@@ -24,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('bet_types');
+        Schema::dropIfExists('tickets');
     }
 };
