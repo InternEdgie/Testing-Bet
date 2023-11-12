@@ -10,16 +10,7 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_1__);
-Object(function webpackMissingModule() { var e = new Error("Cannot find module 'jquery-ui/ui/widgets/datatable.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
 
-// resources/assets/js/app.js
-
-
-window.$ = window.jQuery = (jquery__WEBPACK_IMPORTED_MODULE_1___default());
-
-//add as many widget as you may need
 
 /***/ }),
 
