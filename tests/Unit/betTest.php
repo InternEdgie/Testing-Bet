@@ -3,6 +3,9 @@
 namespace Tests\Unit;
 
 // use PHPUnit\Framework\TestCase;
+use App\Http\Controllers\betController;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\Request;
 use Tests\TestCase;
 
 class betTest extends TestCase
@@ -10,19 +13,22 @@ class betTest extends TestCase
     /**
      * A basic unit test example.
      */
-    public function bet_test()
+
+    use RefreshDatabase;
+    
+    public function testInsertBet()
     {
+        $request = Request::create('/bet/insert', 'POST', [
+            'bet_number' => '123',
+            'bet_amount' => '500.00',
+            'bet_type' => '0',
+            'ticket_id' => '1234567890',
+            'time_draw' => '10:00:00',
+        ]);
 
-        $betData = [
-            'ticket_id' => 1000,
-            'bet_number' => 100,
-            'bet_amount' => 10,
-            'bet_type' => 0,
-            'time_draw' => "10:00:00",
-        ];
+        $betController = new betController();
+        $response = $betController->insertBet($request);
 
-        $response = $this->get('/insertBet', $betData);
-
-        $response->assertStatus(200);
+        $this->assertTrue($response->isRedirect());
     }
 }

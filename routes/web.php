@@ -19,3 +19,4 @@ Route::get('/', function () {
 });
 
 Route::post('/insertBet', [betController::class, 'insertBet'])->name('insertBet');
+Route::get('/', [betController::class, 'fetchBet']);

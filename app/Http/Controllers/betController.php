@@ -28,4 +28,13 @@ class betController extends Controller
 
         return view('/index');
     }
+
+    public function fetchBet() {
+
+        $fetch_bets = DB::table('tickets')
+        ->join('bets', 'tickets.ticket_id', '=', 'bets.ticket_id')
+            ->get();
+
+        return view('/index', compact('fetch_bets'));
+    }
 }

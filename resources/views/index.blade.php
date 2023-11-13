@@ -8,6 +8,7 @@
     <title>Testing Bet</title>
 
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
 </head>
 
 <body>
@@ -99,10 +100,52 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card mt-5" style="width: 40rem;">
+                        <div class="card-header">
+                            <h5 class="card-title text-center mb-0">
+                                TRANSACTIONS
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <table class="table" id="transactions">
+                                <thead>
+                                    <tr>
+                                        <th>Ticket ID</th>
+                                        <th>Bet Number</th>
+                                        <th>Bet Amount</th>
+                                        <th>Bet Type</th>
+                                        <th>Time Draw</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if($fetch_bets->count() > 0)
+                                    @foreach($fetch_bets as $row)
+                                    <tr>
+                                        <td>{{ $row->ticket_id }}</td>
+                                        <td>{{ $row->bet_number }}</td>
+                                        <td>{{ $row->bet_amount }}</td>
+                                        @if($row->bet_type == 0)
+                                        <td>Straight</td>
+                                        @elseif($row->bet_type == 1)
+                                        <td>Ramble</td>
+                                        @endif
+                                        <td>{{ date('g:i A', strtotime('$row->ticket_draw_time')) }}</td>
+                                    </tr>
+                                    @endforeach
+                                    @endif
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <script src="{{ mix('js/app.js') }}" defer></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
     <script>
         function generateRandomLetter() {
             var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -157,6 +200,7 @@
 
                 $('#display_this').removeClass('d-none')
             })
+            $('#transactions').DataTable();
             // $('#proceed_bet').on('submit', function(e) {
             //     var form_data = new FormData($(this)[0]);
             //     $.ajaxSetup({
